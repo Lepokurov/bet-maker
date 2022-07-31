@@ -12,6 +12,8 @@ LINE_PROVIDER_API_HOST_URL = "localhost"
 LINE_PROVIDER_API_TOKEN = "123"
 SERVICE_NAME = "bet-maker"
 
+INNER_TOKEN = "123"
+
 try:
     from settings_local import *  # NOQA
 except ImportError:
