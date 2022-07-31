@@ -31,7 +31,7 @@ def upgrade() -> None:
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('event_id', sa.Integer(), nullable=False),
     sa.Column('amount', sa.DECIMAL(), nullable=False),
-    sa.Column('state', sa.Enum('NEW', 'FINISHED_WIN', 'FINISHED_LOSE', name='betstate'), nullable=True),
+    sa.Column('state', sa.Enum('PENDING', 'FINISHED_WIN', 'FINISHED_LOSE', name='betstate'), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
