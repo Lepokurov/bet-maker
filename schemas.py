@@ -10,6 +10,13 @@ class BetState(enum.Enum):
     FINISHED_LOSE = "FINISHED_LOSE"
 
 
+EventToBetState = {
+    1: BetState.PENDING,
+    2: BetState.FINISHED_WIN,
+    3: BetState.FINISHED_LOSE,
+}
+
+
 class BetModel(BaseModel):
     amount: decimal.Decimal = Field(description="amount amount")
     event_id: int = Field(description="event_id event_id")
@@ -27,6 +34,6 @@ class UserModel(UserLoginModel):
         orm_mode = True
 
 
-class EventStatusModel(BaseModel):
+class EventStateModel(BaseModel):
     event_id: int
-    state: BetState
+    state: int
