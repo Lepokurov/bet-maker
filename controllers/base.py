@@ -84,7 +84,8 @@ class BaseController:
         return data
 
     async def update(self, pk, data):
-        await self._update(model=self.model, pk=pk, data=data)
+        filters = self.__get_id_filter(self.model, pk)
+        await self._update(model=self.model, filters=filters, data=data)
 
     async def delete(self, pk):
         await self._delete(model=self.model, pk=pk)
@@ -110,8 +111,7 @@ class BaseController:
         await self._async_session.refresh(new_object)
         return new_object
 
-    async def _update(self, model, pk, data):
-        filters = self.__get_id_filter(model, pk)
+    async def _update(self, model, filters, data):
         queryset = (
             update(model)
             .filter_by(**filters)
@@ -196,10 +196,8 @@ class BaseController:
         result = await self._async_session.execute(queryset)
         return result.unique().scalars().all()
 
-    def __int__(self):
-        self._async_session = AsyncSession(engine)
-
     async def __aenter__(self, *args, **kwargs) -> "BaseController":
+        self._async_session = AsyncSession(engine)
         return self
 
     async def __aexit__(self, *args, **kwargs) -> None:
