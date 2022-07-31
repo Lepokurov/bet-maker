@@ -17,7 +17,7 @@ EventToBetState = {
 }
 
 
-class BetModel(BaseModel):
+class CreateBetModel(BaseModel):
     amount: decimal.Decimal = Field(description="amount amount")
     event_id: int = Field(description="event_id event_id")
 

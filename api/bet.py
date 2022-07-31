@@ -6,14 +6,14 @@ from controllers.bet import BetController
 from db.models import User
 from dependencies import get_bet_controller, get_user
 from line_provider_client import LineProviderClient, get_line_provider_client
-from schemas import BetModel
+from schemas import CreateBetModel
 
 bet_router = APIRouter(prefix="/bets", tags=["bet"])
 
 
 @bet_router.post("", summary="create bet")
 async def create_bet(
-    bet_data: BetModel = Body(...),
+    bet_data: CreateBetModel = Body(...),
     controller: BetController = Depends(get_bet_controller),
     line_provider_client: LineProviderClient = Depends(get_line_provider_client),
     user: User = Depends(get_user)
