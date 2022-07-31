@@ -13,8 +13,6 @@ engine = create_async_engine(
 )
 BaseSQL = declarative_base()
 
-async_base_session = AsyncSession(engine)
-
 
 async def init_db():
     async with engine.begin() as conn:
