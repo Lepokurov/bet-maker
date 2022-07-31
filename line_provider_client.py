@@ -12,7 +12,11 @@ class LineProviderClient:
     __get_event_url = f"{LINE_PROVIDER_API_HOST_URL}/api/events/{{event_id}}"
 
     async def __aenter__(self, *args, **kwargs) -> "LineProviderClient":
-        headers = {"User-Agent": SERVICE_NAME, "Authorization": f"Bearer {LINE_PROVIDER_API_TOKEN}"}
+        headers = {
+            "User-Agent": SERVICE_NAME,
+            "Authorization": f"Bearer {LINE_PROVIDER_API_TOKEN}",
+            "Content-Type": "application/json",
+        }
         self._client = httpx.AsyncClient(headers=headers, follow_redirects=True)
         return self
 
