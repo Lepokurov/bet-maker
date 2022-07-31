@@ -12,7 +12,7 @@ class Bet(BaseSQLModel):
     id = Column(Integer, primary_key=True)
     event_id = Column(Integer, nullable=False)
     amount = Column(DECIMAL, nullable=False)
-    state = Column(Enum(BetState), default=BetState.NEW.value)
+    state = Column(Enum(BetState), default=BetState.PENDING)
     user_id = Column(Integer, ForeignKey("user.id", ondelete='CASCADE'), nullable=False)
     users = relationship("User", lazy="noload", back_populates="bets")
 
