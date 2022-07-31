@@ -11,4 +11,5 @@ class User(BaseSQLModel):
 
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
-    bets = relationship("Bet", lazy="noload", back_populates="user")
+    token = Column(String, nullable=False)
+    bets = relationship("Bet", lazy="noload", back_populates="users")
